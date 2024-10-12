@@ -1,5 +1,3 @@
-Certainly! I'll create the Markdown document about Waydroid and its configurations in English only, using various Markdown formatting elements.
-
 ```markdown
 # Waydroid and Its Configurations
 
