@@ -14,14 +14,16 @@ def get_bash_scripts(dizin='scripts'):
             sh_dosyalari.append(dosya)
     return sh_dosyalari
 
-def run_bash_script(path):
+def run_bash_script(path, *args):
     """
-    Python kullanarak bir shell betiğini çalıştırır.
+    Python kullanarak bir shell betiğini parametrelerle çalıştırır.
     
-    :param betik_yolu: Shell betiğinin yolu
+    :param path: Shell betiğinin yolu
+    :param args: Betiğe geçirilecek parametreler
     :return: Betik çalıştırmanın çıktısı
     """
-    result = subprocess.run(['sh', path], capture_output=True, text=True)
+    command = ['sh', path] + list(args)
+    result = subprocess.run(command, capture_output=True, text=True)
     return result.stdout
 
 def run_bash_command(komut):
@@ -55,11 +57,19 @@ while True:
         secilen = int(secilen)
         
         if secilen >= 0 and secilen < len(scripts):
-            sonuc = run_bash_script("scripts/" + scripts[secilen])
+            
+            if scripts[secilen] == "site_server_finder.sh":
+                print("Alan Adi Giriniz: ")
+                domain = input()
+                sonuc = run_bash_script("scripts/" + scripts[secilen], domain)
+            else:  
+                sonuc = run_bash_script("scripts/" + scripts[secilen])
+                
             print("------------------------")
             print(sonuc)
             print("------------------------")
             input()
+            os.system('cls' if os.name == 'nt' else 'clear')
         else:
             print("YANLIS SECIM")
             
