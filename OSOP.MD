@@ -1,4 +1,7 @@
+!["Bash Scripting"]([docs/bash-scripting-01.jpg](https://q-e.io/git-assets/bash-scripting-01.jpg))
+
 # Ders.01 >> Bash
+
 
 Bu dizin, Bash kabuğunu farklı durumlarda kullanma hakkında belgeler içerir.
 
