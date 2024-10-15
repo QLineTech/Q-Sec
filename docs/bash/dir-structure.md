@@ -1,9 +1,8 @@
+```markdown
+# Unix ve Linux Dizin Yapısı
 
 ![Linux Dizin Yapısı](https://q-e.io/git-assets/dirPath.webp)
 
-
-```markdown
-# Unix ve Linux Dizin Yapısı
 
 Unix ve Linux işletim sistemlerinde, dosya sistemi hiyerarşik bir yapıya sahiptir. İşte temel dizinler ve kullanım amaçları:
 

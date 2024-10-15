@@ -4,15 +4,18 @@
 ## İçindekiler
 <sub>(Table of Contents)</sub>
 
-1. [Giriş](#giriş)
-2. [Temel Kullanım](#temel-kullanım)
-3. [Düzenli İfadeler](#düzenli-i̇fadeler)
-4. [Dosya ve Dizin İşlemleri](#dosya-ve-dizin-i̇şlemleri)
-5. [Bağlam Kontrolü](#bağlam-kontrolü)
-6. [Çıktı Özelleştirme](#çıktı-özelleştirme)
-7. [Performans Optimizasyonu](#performans-optimizasyonu)
-8. [İleri Teknikler](#i̇leri-teknikler)
-9. [Karmaşık Grep İşlemleri için Bash Betiği](#karmaşık-grep-i̇şlemleri-için-bash-betiği)
+- [Grep Komut Kılavuzu: 60 Kullanım Örneği](#grep-komut-kılavuzu-60-kullanım-örneği)
+  - [İçindekiler](#i̇çindekiler)
+  - [Giriş](#giriş)
+  - [Temel Kullanım](#temel-kullanım)
+  - [Düzenli İfadeler](#düzenli-i̇fadeler)
+  - [Dosya ve Dizin İşlemleri](#dosya-ve-dizin-i̇şlemleri)
+  - [Bağlam Kontrolü](#bağlam-kontrolü)
+  - [Çıktı Özelleştirme](#çıktı-özelleştirme)
+  - [Performans Optimizasyonu](#performans-optimizasyonu)
+  - [İleri Teknikler](#i̇leri-teknikler)
+  - [Karmaşık Grep İşlemleri için Bash Betiği](#karmaşık-grep-i̇şlemleri-için-bash-betiği)
+- [Kullanım bilgisini gösteren fonksiyon](#kullanım-bilgisini-gösteren-fonksiyon)
 
 ## Giriş
 <sub>(Introduction)</sub>

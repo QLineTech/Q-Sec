@@ -1,5 +1,8 @@
 # Dosya Sistemi Gezinme
 
+![Dosya Sistemi Gezinme](https://q-e.io/git-assets/dirs.jpg)
+
+
 - Mevcut çalışma dizinini `pwd` ile yazdır:
 ```
 pwd
