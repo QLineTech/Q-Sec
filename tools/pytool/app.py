@@ -35,10 +35,41 @@ def run_bash_command(komut):
     return result.stdout
 
 
+while True:
+    print("-------------------------------")
+    print("------_QTOOL")
+    print("-------------------------------")
 
-print("MERHABA, PY ARACIMIZA HOS GELDINIZ...")
-scripts = get_bash_scripts()
-print(scripts)
-result = run_bash_script("scripts/git_yukleme.sh")
-print("komut calisma sonrasi sonuc:")
-print(result)
+    scripts = get_bash_scripts()
+
+    for i in range(len(scripts)):
+        print(str(i) + "." + scripts[i])
+    print("q. cikis")
+    
+    secilen= input()
+
+    if secilen == "q":
+        break
+    
+    try:
+        secilen = int(secilen)
+        
+        if secilen >= 0 and secilen < len(scripts):
+            sonuc = run_bash_script("scripts/" + scripts[secilen])
+            print("------------------------")
+            print(sonuc)
+            print("------------------------")
+            input()
+        else:
+            print("YANLIS SECIM")
+            
+            
+            
+            
+    except Exception as e:
+        print("YANLIS SECENEK")
+        print(e)
+
+# result = run_bash_script("scripts/git_yukleme.sh")
+# print("komut calisma sonrasi sonuc:")
+# print(result)
