@@ -1,4 +1,4 @@
-# Bash Dokümantasyonu
+# Ders.01 >> Bash
 
 Bu dizin, Bash kabuğunu farklı durumlarda kullanma hakkında belgeler içerir.
 
@@ -18,11 +18,3 @@ Bu dizin, Bash kabuğunu farklı durumlarda kullanma hakkında belgeler içerir.
 ## GREP
 
 * **grep (Türkçe):** Dosyalarda metin şablonlarını aramak için `grep` komutunu keşfedin. ([docs/bash/grep/grep.tr.md](docs/bash/grep/grep.tr.md))
-
-**Not:**
-
-* Dosya yollarının, bu README.md veya belge listeleme dosyasının bulunduğu geçerli dizine göreli olduğu varsayılır.
-* Bağlantılar, Markdown sözdizimi kullanılarak biçimlendirilir: `[Bağlantı Metni](Dosya Yolu)`.
-* Belgenin dil bilgisi ve düzeni iyileştirildi.
-
-Umarım bu yararlı olur!
