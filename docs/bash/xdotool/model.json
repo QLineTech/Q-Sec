@@ -1,0 +1,592 @@
+{
+    "name": "xdotool",
+    "description": "A command-line X11 automation tool",
+    "synopsis": "xdotool cmd args...",
+    "commands": {
+      "keyboard": [
+        {
+          "name": "key",
+          "syntax": "key [options] keystroke [keystroke ...]",
+          "description": "Type a given keystroke.",
+          "options": [
+            {
+              "flag": "--window",
+              "description": "Send keystrokes to a specific window id."
+            },
+            {
+              "flag": "--clearmodifiers",
+              "description": "Clear modifiers before sending keystrokes."
+            },
+            {
+              "flag": "--delay",
+              "description": "Delay between keystrokes. Default is 12ms."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Send the keystroke 'F2'",
+              "command": "xdotool key F2"
+            },
+            {
+              "description": "Send 'a' with an accent over it",
+              "command": "xdotool key Aacute"
+            },
+            {
+              "description": "Send ctrl+l and then BackSpace as separate keystrokes",
+              "command": "xdotool key ctrl+l BackSpace"
+            }
+          ]
+        },
+        {
+          "name": "keydown",
+          "syntax": "keydown [options] keystroke",
+          "description": "Same as key, except only keydown (press) events are sent."
+        },
+        {
+          "name": "keyup",
+          "syntax": "keyup keystroke",
+          "description": "Same as key, except only keyup (release) events are sent."
+        },
+        {
+          "name": "type",
+          "syntax": "type [options] something to type",
+          "description": "Types as if you had typed it.",
+          "options": [
+            {
+              "flag": "--window",
+              "description": "Send keystrokes to a specific window id."
+            },
+            {
+              "flag": "--delay",
+              "description": "Delay between keystrokes. Default is 12ms."
+            },
+            {
+              "flag": "--clearmodifiers",
+              "description": "Clear modifiers before sending keystrokes."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Type 'Hello world!'",
+              "command": "xdotool type 'Hello world!'"
+            }
+          ]
+        }
+      ],
+      "mouse": [
+        {
+          "name": "mousemove",
+          "syntax": "mousemove [options] x y OR 'restore'",
+          "description": "Move the mouse to the specific X and Y coordinates on the screen.",
+          "options": [
+            {
+              "flag": "--window",
+              "description": "Specify a window to move relative to."
+            },
+            {
+              "flag": "--screen",
+              "description": "Move the mouse to the specified screen."
+            },
+            {
+              "flag": "--polar",
+              "description": "Use polar coordinates."
+            },
+            {
+              "flag": "--clearmodifiers",
+              "description": "Clear modifiers before moving."
+            },
+            {
+              "flag": "--sync",
+              "description": "Wait until the mouse is actually moved."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Click the top-left corner of the screen and move the mouse back",
+              "command": "xdotool mousemove 0 0 click 1 mousemove restore"
+            }
+          ]
+        },
+        {
+          "name": "mousemove_relative",
+          "syntax": "mousemove_relative [options] x y",
+          "description": "Move the mouse x,y pixels relative to the current position of the mouse cursor.",
+          "options": [
+            {
+              "flag": "--polar",
+              "description": "Use polar coordinates."
+            },
+            {
+              "flag": "--sync",
+              "description": "Wait until the mouse is actually moved."
+            },
+            {
+              "flag": "--clearmodifiers",
+              "description": "Clear modifiers before moving."
+            }
+          ]
+        },
+        {
+          "name": "click",
+          "syntax": "click [options] button",
+          "description": "Send a click, that is, a mousedown followed by mouseup for the given button.",
+          "options": [
+            {
+              "flag": "--clearmodifiers",
+              "description": "Clear modifiers before clicking."
+            },
+            {
+              "flag": "--repeat",
+              "description": "Specify how many times to click."
+            },
+            {
+              "flag": "--delay",
+              "description": "Specify how long to delay between clicks."
+            },
+            {
+              "flag": "--window",
+              "description": "Specify a window to send a click to."
+            }
+          ]
+        },
+        {
+          "name": "mousedown",
+          "syntax": "mousedown [options] button",
+          "description": "Same as click, except only a mouse down is sent."
+        },
+        {
+          "name": "mouseup",
+          "syntax": "mouseup [options] button",
+          "description": "Same as click, except only a mouse up is sent."
+        },
+        {
+          "name": "getmouselocation",
+          "syntax": "getmouselocation [--shell]",
+          "description": "Outputs the x, y, screen, and window id of the mouse cursor.",
+          "options": [
+            {
+              "flag": "--shell",
+              "description": "Output shell data you can eval."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Get mouse location in shell format",
+              "command": "xdotool getmouselocation --shell"
+            }
+          ]
+        },
+        {
+          "name": "behave_screen_edge",
+          "syntax": "behave_screen_edge [options] where command ...",
+          "description": "Bind an action to events when the mouse hits the screen edge or corner.",
+          "options": [
+            {
+              "flag": "--delay",
+              "description": "Delay before running the command."
+            },
+            {
+              "flag": "--quiesce",
+              "description": "Delay before the next command will run."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Activate google-chrome when you move the mouse to the bottom-left corner",
+              "command": "xdotool behave_screen_edge bottom-left search --class google-chrome windowactivate"
+            }
+          ]
+        }
+      ],
+      "window": [
+        {
+          "name": "search",
+          "syntax": "search [options] pattern",
+          "description": "Search for windows with titles, names, or classes with a regular expression pattern.",
+          "options": [
+            {
+              "flag": "--class",
+              "description": "Match against the window class."
+            },
+            {
+              "flag": "--classname",
+              "description": "Match against the window classname."
+            },
+            {
+              "flag": "--maxdepth",
+              "description": "Set recursion/child search depth."
+            },
+            {
+              "flag": "--name",
+              "description": "Match against the window name."
+            },
+            {
+              "flag": "--onlyvisible",
+              "description": "Show only visible windows in the results."
+            },
+            {
+              "flag": "--pid",
+              "description": "Match windows that belong to a specific process id."
+            },
+            {
+              "flag": "--screen",
+              "description": "Select windows only on a specific screen."
+            },
+            {
+              "flag": "--desktop",
+              "description": "Only match windows on a certain desktop."
+            },
+            {
+              "flag": "--limit",
+              "description": "Stop searching after finding N matching windows."
+            },
+            {
+              "flag": "--all",
+              "description": "Require that all conditions be met."
+            },
+            {
+              "flag": "--any",
+              "description": "Match windows that match any condition."
+            },
+            {
+              "flag": "--sync",
+              "description": "Block until there are results."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Search for Google Chrome windows",
+              "command": "xdotool search --onlyvisible --class \"google-chrome\""
+            }
+          ]
+        },
+        {
+          "name": "selectwindow",
+          "syntax": "selectwindow",
+          "description": "Get the window id (for a client) by clicking on it.",
+          "examples": [
+            {
+              "description": "Kill a window by clicking on it",
+              "command": "xdotool selectwindow windowkill"
+            }
+          ]
+        },
+        {
+          "name": "behave",
+          "syntax": "behave window action command ...",
+          "description": "Bind an action to an event on a window.",
+          "examples": [
+            {
+              "description": "Print the window title and pid whenever an xterm gets focus",
+              "command": "xdotool search --class xterm behave %@ focus getwindowname getwindowpid"
+            }
+          ]
+        },
+        {
+          "name": "getwindowpid",
+          "syntax": "getwindowpid [window]",
+          "description": "Output the PID owning a given window.",
+          "examples": [
+            {
+              "description": "Find the PID for all xterms",
+              "command": "xdotool search --class xterm getwindowpid %@"
+            }
+          ]
+        },
+        {
+          "name": "getwindowname",
+          "syntax": "getwindowname [window]",
+          "description": "Output the name of a given window, also known as the title."
+        },
+        {
+          "name": "getwindowgeometry",
+          "syntax": "getwindowgeometry [options] [window]",
+          "description": "Output the geometry (location and position) of a window.",
+          "options": [
+            {
+              "flag": "--shell",
+              "description": "Output values suitable for 'eval' in a shell."
+            }
+          ]
+        },
+        {
+          "name": "getwindowfocus",
+          "syntax": "getwindowfocus [-f]",
+          "description": "Prints the window id of the currently focused window."
+        },
+        {
+          "name": "windowsize",
+          "syntax": "windowsize [options] [window] width height",
+          "description": "Set the window size of the given window.",
+          "options": [
+            {
+              "flag": "--usehints",
+              "description": "Use window sizing hints (when available) to set width and height."
+            },
+            {
+              "flag": "--sync",
+              "description": "Wait until the window is actually resized."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Set a terminal to be 80x24 characters",
+              "command": "xdotool windowsize --usehints some_windowid 80 24"
+            }
+          ]
+        },
+        {
+          "name": "windowmove",
+          "syntax": "windowmove [options] [window] x y",
+          "description": "Move the window to the given position.",
+          "options": [
+            {
+              "flag": "--sync",
+              "description": "Wait until the window is actually moved."
+            },
+            {
+              "flag": "--relative",
+              "description": "Make movement relative to the current window position."
+            }
+          ],
+          "examples": [
+            {
+              "description": "Move the active window to 100,100",
+              "command": "xdotool getactivewindow windowmove 100 100"
+            }
+          ]
+        },
+        {
+          "name": "windowfocus",
+          "syntax": "windowfocus [options] [window]",
+          "description": "Focus a window.",
+          "options": [
+            {
+              "flag": "--sync",
+              "description": "Wait until the window is actually focused."
+            }
+          ]
+        },
+        {
+          "name": "windowmap",
+          "syntax": "windowmap [options] [window]",
+          "description": "Map a window (make it visible on the screen).",
+          "options": [
+            {
+              "flag": "--sync",
+              "description": "Wait until the window is actually mapped (visible)."
+            }
+          ]
+        },
+        {
+          "name": "windowminimize",
+          "syntax": "windowminimize [options] [window]",
+          "description": "Minimize a window.",
+          "options": [
+            {
+              "flag": "--sync",
+              "description": "Wait until the window is actually minimized."
+            }
+          ]
+        },
+        {
+          "name": "windowraise",
+          "syntax": "windowraise [window_id=%1]",
+          "description": "Raise the window to the top of the stack."
+        },
+        {
+          "name": "windowreparent",
+          "syntax": "windowreparent [source_window] destination_window",
+          "description": "Reparent a window."
+        },
+        {
+          "name": "windowclose",
+          "syntax": "windowclose [window]",
+          "description": "Close a window."
+        },
+        {
+          "name": "windowkill",
+          "syntax": "windowkill [window]",
+          "description": "Kill a window."
+        },
+        {
+          "name": "windowunmap",
+          "syntax": "windowunmap [options] [window_id=%1]",
+          "description": "Unmap a window, making it no longer appear on your screen.",
+          "options": [
+            {
+              "flag": "--sync",
+              "description": "Wait until the window is actually unmapped (hidden)."
+            }
+          ]
+        },
+        {
+          "name": "set_window",
+          "syntax": "set_window [options] [windowid=%1]",
+          "description": "Set properties about a window.",
+          "options": [
+            {
+              "flag": "--name",
+              "description": "Set window WM_NAME (the window title, usually)"
+            },
+            {
+              "flag": "--icon-name",
+              "description": "Set window WM_ICON_NAME (the window title when minimized, usually)"
+            },
+            {
+              "flag": "--role",
+              "description": "Set window WM_WINDOW_ROLE"
+            },
+            {
+              "flag": "--classname",
+              "description": "Set window class name"
+            },
+            {
+              "flag": "--class",
+              "description": "Set window class"
+            },
+            {
+              "flag": "--urgency",
+              "description": "Set window urgency hint"
+            },
+            {
+              "flag": "--overrideredirect",
+              "description": "Set window's override_redirect value"
+            }
+          ]
+        }
+      ],
+      "desktop": [
+        {
+          "name": "windowactivate",
+          "syntax": "windowactivate [options] [window]",
+          "description": "Activate the window.",
+          "options": [
+            {
+              "flag": "--sync",
+              "description": "Wait until the window is actually activated."
+            }
+          ]
+        },
+        {
+          "name": "getactivewindow",
+          "syntax": "getactivewindow",
+          "description": "Output the current active window."
+        },
+        {
+          "name": "set_num_desktops",
+          "syntax": "set_num_desktops number",
+          "description": "Changes the number of desktops or workspaces."
+        },
+        {
+          "name": "get_num_desktops",
+          "syntax": "get_num_desktops",
+          "description": "Output the current number of desktops."
+        },
+        {
+            "name": "get_desktop_viewport",
+            "syntax": "get_desktop_viewport [--shell]",
+            "description": "Report the current viewport's position.",
+            "options": [
+              {
+                "flag": "--shell",
+                "description": "Output is friendly to shell eval."
+              }
+            ]
+          },
+          {
+            "name": "set_desktop_viewport",
+            "syntax": "set_desktop_viewport x y",
+            "description": "Move the viewport to the given position.",
+            "examples": [
+              {
+                "description": "Move to the 2nd workspace on a 1280x800 screen",
+                "command": "xdotool set_desktop_viewport 1280 0"
+              }
+            ]
+          },
+          {
+            "name": "set_desktop",
+            "syntax": "set_desktop [options] desktop_number",
+            "description": "Change the current view to the specified desktop.",
+            "options": [
+              {
+                "flag": "--relative",
+                "description": "Use relative movements instead of absolute."
+              }
+            ]
+          },
+          {
+            "name": "get_desktop",
+            "syntax": "get_desktop",
+            "description": "Output the current desktop in view."
+          },
+          {
+            "name": "set_desktop_for_window",
+            "syntax": "set_desktop_for_window [window] desktop_number",
+            "description": "Move a window to a different desktop."
+          },
+          {
+            "name": "get_desktop_for_window",
+            "syntax": "get_desktop_for_window [window]",
+            "description": "Output the desktop currently containing the given window."
+          }
+        ],
+        "miscellaneous": [
+          {
+            "name": "exec",
+            "syntax": "exec [options] command [...]",
+            "description": "Execute a program.",
+            "options": [
+              {
+                "flag": "--sync",
+                "description": "Block until the child process exits."
+              }
+            ],
+            "examples": [
+              {
+                "description": "Lock the screen when the mouse sits in the top-right corner",
+                "command": "xdotool behave_screen_edge --delay 1000 top-right exec gnome-screensaver-command --lock"
+              },
+              {
+                "description": "Fail to move the mouse due to --sync and non-zero exit",
+                "command": "xdotool exec --sync /bin/false mousemove 0 0"
+              },
+              {
+                "description": "Successfully move the mouse without --sync",
+                "command": "xdotool exec /bin/false mousemove 0 0"
+              }
+            ]
+          },
+          {
+            "name": "sleep",
+            "syntax": "sleep seconds",
+            "description": "Sleep for a specified period. Fractions of seconds are valid."
+          }
+        ]
+      },
+      "special_syntax": {
+        "window_stack": {
+          "description": "A way to refer to windows in a sequence of commands.",
+          "examples": [
+            "%1: Refers to the first window in the stack",
+            "%@: Refers to all windows in the stack"
+          ]
+        },
+        "command_chaining": {
+          "description": "Multiple commands can be chained together in a single xdotool invocation.",
+          "example": "xdotool search --name gdb key ctrl+c"
+        }
+      },
+      "notes": {
+        "clearmodifiers": {
+          "description": "The --clearmodifiers flag clears modifiers before sending keystrokes or mouse clicks."
+        },
+        "sendevent": {
+          "description": "Some commands use XSendEvent instead of XTEST, which may be ignored by some applications."
+        },
+        "extended_window_manager_hints": {
+          "description": "xdotool uses EWMH (Extended Window Manager Hints) for some operations, which may not be supported by all window managers."
+        }
+      }
+    }

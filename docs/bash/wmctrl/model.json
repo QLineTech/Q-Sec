@@ -1,0 +1,181 @@
+{
+  "name": "wmctrl",
+  "description": "A command-line tool to interact with an X Window manager that is compatible with the EWMH/NetWM specification.",
+  "synopsis": "wmctrl [ options | actions ]...",
+  "actions": [
+    {
+      "flag": "-a",
+      "argument": "<WIN>",
+      "description": "Switch to the desktop containing the window <WIN>, raise the window, and give it focus."
+    },
+    {
+      "flag": "-b",
+      "argument": "( add | remove | toggle ),prop1 [,prop2 ]",
+      "description": "Add, remove, or toggle up to two window properties simultaneously."
+    },
+    {
+      "flag": "-c",
+      "argument": "<WIN>",
+      "description": "Close the window <WIN> gracefully."
+    },
+    {
+      "flag": "-d",
+      "description": "List all desktops managed by the window manager."
+    },
+    {
+      "flag": "-e",
+      "argument": "<MVARG>",
+      "description": "Resize and move a window that has been specified with a -r action."
+    },
+    {
+      "flag": "-g",
+      "argument": "w,h",
+      "description": "Change the geometry (common size) of all desktops."
+    },
+    {
+      "flag": "-h",
+      "description": "Print help text about program usage."
+    },
+    {
+      "flag": "-I",
+      "argument": "name",
+      "description": "Set the icon name (short title) of the window specified by a -r action."
+    },
+    {
+      "flag": "-k",
+      "argument": "( on | off )",
+      "description": "Turn on or off the window manager's \"show the desktop\" mode."
+    },
+    {
+      "flag": "-l",
+      "description": "List the windows being managed by the window manager."
+    },
+    {
+      "flag": "-m",
+      "description": "Display information about the window manager and the environment."
+    },
+    {
+      "flag": "-n",
+      "argument": "N",
+      "description": "Change the number of desktops to N (a non-negative integer)."
+    },
+    {
+      "flag": "-N",
+      "argument": "name",
+      "description": "Set the name (long title) of the window specified by a -r action."
+    },
+    {
+      "flag": "-o",
+      "argument": "x,y",
+      "description": "Change the viewport for the current desktop."
+    },
+    {
+      "flag": "-r",
+      "argument": "<WIN>",
+      "description": "Specify a target window for an action."
+    },
+    {
+      "flag": "-R",
+      "argument": "<WIN>",
+      "description": "Move the window <WIN> to the current desktop, raise the window, and give it focus."
+    },
+    {
+      "flag": "-s",
+      "argument": "<DESK>",
+      "description": "Switch to the desktop <DESK>."
+    },
+    {
+      "flag": "-t",
+      "argument": "<DESK>",
+      "description": "Move a window that has been specified with the -r action to the desktop <DESK>."
+    },
+    {
+      "flag": "-T",
+      "argument": "name",
+      "description": "Set both the name (long title) and icon name (short title) of the window specified by a -r action."
+    }
+  ],
+  "options": [
+    {
+      "flag": "-F",
+      "description": "Treat window name arguments as exact window titles that are case sensitive."
+    },
+    {
+      "flag": "-G",
+      "description": "Include geometry information in the output of the -l action."
+    },
+    {
+      "flag": "-i",
+      "description": "Interpret window arguments as a numeric value rather than a string name."
+    },
+    {
+      "flag": "-p",
+      "description": "Include PIDs in the window list printed by the -l action."
+    },
+    {
+      "flag": "-u",
+      "description": "Override auto-detection and force UTF-8 mode."
+    },
+    {
+      "flag": "-v",
+      "description": "Provide verbose output."
+    },
+    {
+      "flag": "-w",
+      "argument": "[ <WORKAROUND>[,<WORKAROUND>]... ]",
+      "description": "Use specified workarounds."
+    },
+    {
+      "flag": "-x",
+      "description": "Include WM_CLASS in the window list or interpret <WIN> as the WM_CLASS name."
+    }
+  ],
+  "arguments": [
+    {
+      "name": "<DESK>",
+      "description": "An integer representing desktop numbers, starting at 0."
+    },
+    {
+      "name": "<MVARG>",
+      "description": "A move and resize argument with the format 'g,x,y,w,h'."
+    },
+    {
+      "name": "<WIN>",
+      "description": "Specifies a window that is the target of an action."
+    },
+    {
+      "name": "<WORKAROUND>",
+      "description": "Currently only DESKTOP_TITLES_INVALID_UTF8 is implemented."
+    }
+  ],
+  "examples": [
+    {
+      "description": "Getting a list of windows managed by the window manager",
+      "command": "wmctrl -l"
+    },
+    {
+      "description": "Getting a list of windows with PID and geometry information",
+      "command": "wmctrl -p -G -l"
+    },
+    {
+      "description": "Going to the window with a name containing 'emacs' in it",
+      "command": "wmctrl -a emacs"
+    },
+    {
+      "description": "Shade a window with a title that contains the word 'mozilla'",
+      "command": "wmctrl -r mozilla -b add,shaded"
+    },
+    {
+      "description": "Close a very specifically titled window",
+      "command": "wmctrl -F -c 'Debian bug tracking system - Mozilla'"
+    },
+    {
+      "description": "Toggle the 'stickiness' of a window with a specific window identity",
+      "command": "wmctrl -i -r 0x0120002 -b add,sticky"
+    },
+    {
+      "description": "Change the title of a window chosen by clicking on it",
+      "command": "wmctrl -r :SELECT: -T \"Selected Window\""
+    }
+  ]
+}

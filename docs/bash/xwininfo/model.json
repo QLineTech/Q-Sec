@@ -1,0 +1,138 @@
+{
+    "name": "xwininfo",
+    "description": "Window information utility for X",
+    "synopsis": "xwininfo [-help] [-id wdid] [-root] [-name wdname] [-int] [-children] [-tree] [-stats] [-bits] [-events] [-size] [-wm] [-shape] [-frame] [-all] [-english] [-metric] [-display host:dpy] [-version]",
+    "description_detailed": "Xwininfo is a utility for displaying information about windows. Various information is displayed depending on which options are selected. If no options are chosen, -stats is assumed.",
+    "window_selection": [
+      {
+        "method": "mouse",
+        "description": "The user can select the target window with the mouse by clicking any mouse button in the desired window."
+      },
+      {
+        "method": "id",
+        "description": "The user can specify the window id on the command line with the -id option."
+      },
+      {
+        "method": "name",
+        "description": "The user can specify which window is desired by name using the -name option."
+      },
+      {
+        "method": "root",
+        "description": "The user can quickly obtain information on the screen's root window using the -root option."
+      }
+    ],
+    "options": [
+      {
+        "flag": "-help",
+        "description": "Print out the 'Usage:' command syntax summary."
+      },
+      {
+        "flag": "-id wdid",
+        "description": "Specify a target window wdid on the command line rather than using the mouse to select the target window."
+      },
+      {
+        "flag": "-name wdname",
+        "description": "Specify that the window named wdname is the target window on the command line rather than using the mouse to select the target window."
+      },
+      {
+        "flag": "-root",
+        "description": "Specify that X's root window is the target window."
+      },
+      {
+        "flag": "-int",
+        "description": "Specify that all X window ids should be displayed as integer values. The default is to display them as hexadecimal values."
+      },
+      {
+        "flag": "-children",
+        "description": "Display the root, parent, and children windows' ids and names of the selected window."
+      },
+      {
+        "flag": "-tree",
+        "description": "Like -children but displays all children recursively."
+      },
+      {
+        "flag": "-stats",
+        "description": "Display various attributes pertaining to the location and appearance of the selected window."
+      },
+      {
+        "flag": "-bits",
+        "description": "Display various attributes pertaining to the selected window's raw bits and how the selected window is to be stored."
+      },
+      {
+        "flag": "-events",
+        "description": "Display the selected window's event masks."
+      },
+      {
+        "flag": "-size",
+        "description": "Display the selected window's sizing hints."
+      },
+      {
+        "flag": "-wm",
+        "description": "Display the selected window's window manager hints."
+      },
+      {
+        "flag": "-shape",
+        "description": "Display the selected window's window and border shape extents."
+      },
+      {
+        "flag": "-frame",
+        "description": "Consider window manager frames when manually selecting windows."
+      },
+      {
+        "flag": "-metric",
+        "description": "Display all individual height, width, and x and y positions in millimeters as well as number of pixels."
+      },
+      {
+        "flag": "-english",
+        "description": "Display all individual height, width, and x and y positions in inches (and feet, yards, and miles if necessary) as well as number of pixels."
+      },
+      {
+        "flag": "-all",
+        "description": "A quick way to ask for all information possible."
+      },
+      {
+        "flag": "-d, -display host:dpy",
+        "description": "Specify the server to connect to."
+      },
+      {
+        "flag": "-version",
+        "description": "Print xwininfo's version information and exit."
+      }
+    ],
+    "example": {
+      "description": "Sample summary taken with no options specified",
+      "command": "xwininfo",
+      "output": {
+        "window_id": "0x60000f",
+        "window_name": "xterm",
+        "absolute_upper_left_x": 2,
+        "absolute_upper_left_y": 85,
+        "relative_upper_left_x": 0,
+        "relative_upper_left_y": 25,
+        "width": 579,
+        "height": 316,
+        "depth": 8,
+        "visual": "0x1e",
+        "visual_class": "PseudoColor",
+        "border_width": 0,
+        "class": "InputOutput",
+        "colormap": {
+          "id": "0x27",
+          "status": "installed"
+        },
+        "bit_gravity_state": "NorthWestGravity",
+        "window_gravity_state": "NorthWestGravity",
+        "backing_store_state": "NotUseful",
+        "save_under_state": "no",
+        "map_state": "IsViewable",
+        "override_redirect_state": "no",
+        "corners": {
+          "top_left": "+2+85",
+          "top_right": "-699+85",
+          "bottom_right": "-699-623",
+          "bottom_left": "+2-623"
+        },
+        "geometry": "80x24+0+58"
+      }
+    }
+  }
