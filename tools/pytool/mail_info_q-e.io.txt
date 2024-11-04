@@ -1,0 +1,99 @@
+MX Kayıtları:
+35 route3.mx.cloudflare.net.
+89 route1.mx.cloudflare.net.
+9 route2.mx.cloudflare.net.
+Fallback Mail Server (A kaydı): 104.21.68.160
+172.67.196.223
+SPF Kaydı:
+"v=spf1 include:_spf.mx.cloudflare.net ~all"
+DMARC kaydı bulunamadı.
+Whois E-posta Adresleri:
+abuse@hostinger.com
+Mail Sunucu Portları (route3.mx.cloudflare.net.):
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-10-17 11:57 +03
+Nmap scan report for route3.mx.cloudflare.net. (162.159.205.25)
+Host is up (0.045s latency).
+Other addresses for route3.mx.cloudflare.net. (not scanned): 162.159.205.24 162.159.205.23 2606:4700:f5::13 2606:4700:f5::11 2606:4700:f5::12
+
+PORT    STATE SERVICE    VERSION
+25/tcp  open  smtp
+110/tcp open  tcpwrapped
+143/tcp open  tcpwrapped
+465/tcp open  tcpwrapped
+587/tcp open  tcpwrapped
+993/tcp open  tcpwrapped
+995/tcp open  tcpwrapped
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port25-TCP:V=7.94SVN%I=7%D=10/17%Time=6710D195%P=x86_64-pc-linux-gnu%r(
+SF:NULL,3C,"220\x20mx\.cloudflare\.net\x20Cloudflare\x20Email\x20ESMTP\x20
+SF:Service\x20ready\r\n")%r(Hello,64,"220\x20mx\.cloudflare\.net\x20Cloudf
+SF:lare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x20Unrecognized\x20co
+SF:mmand\.\x20IJo6ilQZFHfU\r\n")%r(Help,59,"220\x20mx\.cloudflare\.net\x20
+SF:Cloudflare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x20Command\x20n
+SF:ot\x20implemented\r\n")%r(GenericLines,64,"220\x20mx\.cloudflare\.net\x
+SF:20Cloudflare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x20Unrecogniz
+SF:ed\x20command\.\x207ZBfL8AZ3ueI\r\n")%r(GetRequest,64,"220\x20mx\.cloud
+SF:flare\.net\x20Cloudflare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x
+SF:20Unrecognized\x20command\.\x20mGmipeBEW0vV\r\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.53 seconds
+Mail Sunucu Portları (route1.mx.cloudflare.net.):
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-10-17 11:58 +03
+Nmap scan report for route1.mx.cloudflare.net. (162.159.205.13)
+Host is up (0.047s latency).
+Other addresses for route1.mx.cloudflare.net. (not scanned): 162.159.205.11 162.159.205.12 2606:4700:f5::b 2606:4700:f5::d 2606:4700:f5::c
+
+PORT    STATE SERVICE    VERSION
+25/tcp  open  smtp
+110/tcp open  tcpwrapped
+143/tcp open  tcpwrapped
+465/tcp open  tcpwrapped
+587/tcp open  tcpwrapped
+993/tcp open  tcpwrapped
+995/tcp open  tcpwrapped
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port25-TCP:V=7.94SVN%I=7%D=10/17%Time=6710D1A3%P=x86_64-pc-linux-gnu%r(
+SF:NULL,3C,"220\x20mx\.cloudflare\.net\x20Cloudflare\x20Email\x20ESMTP\x20
+SF:Service\x20ready\r\n")%r(Hello,64,"220\x20mx\.cloudflare\.net\x20Cloudf
+SF:lare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x20Unrecognized\x20co
+SF:mmand\.\x20r7OocsEBtvNr\r\n")%r(Help,59,"220\x20mx\.cloudflare\.net\x20
+SF:Cloudflare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x20Command\x20n
+SF:ot\x20implemented\r\n")%r(GenericLines,64,"220\x20mx\.cloudflare\.net\x
+SF:20Cloudflare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x20Unrecogniz
+SF:ed\x20command\.\x20NXwWyy7WXWc8\r\n")%r(GetRequest,64,"220\x20mx\.cloud
+SF:flare\.net\x20Cloudflare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x
+SF:20Unrecognized\x20command\.\x20UvG4MuAn0P0q\r\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.68 seconds
+Mail Sunucu Portları (route2.mx.cloudflare.net.):
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-10-17 11:58 +03
+Nmap scan report for route2.mx.cloudflare.net. (162.159.205.19)
+Host is up (0.042s latency).
+Other addresses for route2.mx.cloudflare.net. (not scanned): 162.159.205.17 162.159.205.18 2606:4700:f5::10 2606:4700:f5::e 2606:4700:f5::f
+
+PORT    STATE SERVICE    VERSION
+25/tcp  open  smtp
+110/tcp open  tcpwrapped
+143/tcp open  tcpwrapped
+465/tcp open  tcpwrapped
+587/tcp open  tcpwrapped
+993/tcp open  tcpwrapped
+995/tcp open  tcpwrapped
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port25-TCP:V=7.94SVN%I=7%D=10/17%Time=6710D1B2%P=x86_64-pc-linux-gnu%r(
+SF:NULL,3C,"220\x20mx\.cloudflare\.net\x20Cloudflare\x20Email\x20ESMTP\x20
+SF:Service\x20ready\r\n")%r(Hello,64,"220\x20mx\.cloudflare\.net\x20Cloudf
+SF:lare\x20Email\x20ESMTP\x20Service\x20ready\r\n502\x20Unrecognized\x20co
+SF:mmand\.\x20eQEY6ANho7Bl\r\n")%r(Help,3C,"220\x20mx\.cloudflare\.net\x20
+SF:Cloudflare\x20Email\x20ESMTP\x20Service\x20ready\r\n")%r(GenericLines,6
+SF:4,"220\x20mx\.cloudflare\.net\x20Cloudflare\x20Email\x20ESMTP\x20Servic
+SF:e\x20ready\r\n502\x20Unrecognized\x20command\.\x20IG81ALdR5S8v\r\n")%r(
+SF:GetRequest,64,"220\x20mx\.cloudflare\.net\x20Cloudflare\x20Email\x20ESM
+SF:TP\x20Service\x20ready\r\n502\x20Unrecognized\x20command\.\x20wqp1svGaP
+SF:rs0\r\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.29 seconds
+Web sitesinden e-posta adresi bulunamadı.

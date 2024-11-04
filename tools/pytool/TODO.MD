@@ -1,0 +1,17 @@
+-- PROXY (SAKLANMA) (TOR) (Activate/Deactivate)
+-- TRACEROUTE
+-- FIREWALL DETECTOR
+-- NMAP 
+    -- host discovery
+    -- OS Detection
+    -- Phone Detection
+    -- Windows Detection
+    -- Linux Detection
+    -- Router Detection
+    -- Switch Detection
+    -- Printer Detection
+-- WEB SCANS
+    -- DNS LOOKUP (DONE BY K1)
+    -- SUBDOMAIN FINDER (DONE BY K1)
+    -- MAIL SERVER FINDER (DONE BY K1)
+    -- MAIL FINDER BY KATANA (DONE BY K1)

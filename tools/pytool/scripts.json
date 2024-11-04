@@ -1,0 +1,105 @@
+{
+    "network": [
+        {
+            "title": "Local Network Scan",
+            "script": "network_local_scan.sh",
+            "parameters": []
+        },
+        {
+            "title": "IP Port Taramasi ve Kesif",
+            "script": "ip_scan.sh",
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "help": "Hedef IP giriniz",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "website": [
+        {
+            "title": "Website Host Finder",
+            "script": "website_host_finder.sh",
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "help": "Alan Adi Giriniz.",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "title": "Website Host Finder (Full)",
+            "script": "website_host_finder_full.sh",
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "help": "Alan Adi Giriniz.",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "title": "Website DNS Lookup",
+            "script": "website_dns_lookup.sh",
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "help": "Alan Adi Giriniz.",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "title": "Website subdomain Lookup",
+            "script": "website_subdomain_finder.sh",
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "help": "Alan Adi Giriniz.",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "title": "Website email Lookup",
+            "script": "website_email_scanner.sh",
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "help": "Alan Adi Giriniz.",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "title": "Website email Lookup (Katana)",
+            "script": "website_email_scanner_katana.sh",
+            "parameters": [
+                {
+                    "title": "Domain",
+                    "help": "Alan Adi Giriniz.",
+                    "type": "string"
+                }
+            ]
+        }
+
+    ],
+    "firewall": [
+
+    ],
+    "enumeration": [
+        {
+            "title": "IP Port Taramasi ve Kesif",
+            "script": "ip_scan.sh",
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "help": "Hedef IP giriniz",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}
