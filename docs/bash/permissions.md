@@ -135,3 +135,67 @@ ls -lR dizin_adi
 # Belirli izinlere sahip dosyaları bulma
 find /dizin -type f -perm 644
 ```
+
+
+Linux'ta kullanıcı ve grup yönetimi için temel komutları açıklıyorum:
+
+# Kullanıcı İşlemleri 🧑
+
+## Kullanıcı Ekleme
+```bash
+sudo useradd kullaniciadi          # Temel kullanıcı oluşturma
+sudo useradd -m kullaniciadi       # Ev dizini ile kullanıcı oluşturma
+sudo useradd -m -s /bin/bash user  # Ev dizini ve bash kabuğu ile kullanıcı oluşturma
+```
+
+## Kullanıcı Silme
+```bash
+sudo userdel kullaniciadi          # Kullanıcıyı sil
+sudo userdel -r kullaniciadi       # Kullanıcıyı ve ev dizinini sil
+```
+
+## Kullanıcı Şifre İşlemleri
+```bash
+sudo passwd kullaniciadi           # Kullanıcı şifresi belirleme/değiştirme
+```
+
+## Kullanıcı Bilgilerini Düzenleme
+```bash
+sudo usermod -s /bin/bash user     # Kabuk değiştirme
+sudo usermod -l yeniisim eskiisim  # Kullanıcı adını değiştirme
+```
+
+# Grup İşlemleri 👥
+
+## Grup Ekleme
+```bash
+sudo groupadd grupadi              # Yeni grup oluşturma
+```
+
+## Grup Silme
+```bash
+sudo groupdel grupadi              # Grup silme
+```
+
+## Gruba Kullanıcı Ekleme/Çıkarma
+```bash
+sudo usermod -aG grupadi kullanici # Kullanıcıyı gruba ekle
+sudo gpasswd -d kullanici grupadi  # Kullanıcıyı gruptan çıkar
+```
+
+# Yararlı Kontrol Komutları 🔍
+
+```bash
+id kullaniciadi                    # Kullanıcı bilgilerini göster
+groups kullaniciadi                # Kullanıcının gruplarını listele
+cat /etc/passwd                    # Tüm kullanıcıları görüntüle
+cat /etc/group                     # Tüm grupları görüntüle
+```
+
+Önemli Notlar:
+- Tüm bu komutlar root yetkisi gerektirir (sudo)
+- Sistem kullanıcılarını silmek tehlikeli olabilir
+- Kullanıcı silmeden önce aktif işlemleri kontrol edin
+- Grup silmeden önce bağımlılıkları kontrol edin
+
+Daha detaylı bilgi ister misiniz?
