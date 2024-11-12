@@ -1,12 +1,4 @@
-# Unix/Linux Sistem Kılavuzu: Başlangıçtan İleri Seviyeye
 
-## İçindekiler
-1. [Unix Klasör Yapısı](#unix-klasör-yapısı)
-2. [Unix İzinleri](#unix-izinleri)
-3. [Temel Unix Komutları](#temel-unix-komutları)
-4. [Hızlı Başvuru Kılavuzu](#hızlı-başvuru-kılavuzu)
-5. [Kaynaklar](#kaynaklar)
-6. [Ödev](#ödev)
 
 ## Unix Klasör Yapısı
 
@@ -102,64 +94,10 @@ Unix/Linux sistemlerinde tüm dosya sistemi "/" (kök) dizininden başlar. Bu, W
 ```
 
 
-## Kaynaklar
+[← Ana Sayfa](Q00_index.tr.md)
 
-### Resmi Dokümantasyonlar
-1. [Linux Documentation Project](https://tldp.org/)
-2. [GNU/Linux Tutorial](https://www.gnu.org/software/coreutils/manual/)
-3. [Ubuntu Documentation](https://help.ubuntu.com/)
+[← Önceki](Q00_index.tr.md)
+[→ Sonraki](Q00_index.tr.md)
 
-### Türkçe Kaynaklar
-1. Türkiye Linux Kullanıcıları Derneği - https://www.linux.org.tr/
-2. Linux Kitaplığı - https://belgeler.yazbel.com/linux-sistem-yonetimi/
-
-## Ödev
-
-### Başlangıç Seviyesi
-1. Kendi ev dizininizde aşağıdaki yapıyı oluşturun:
-```
-~/proje/
-├── belgeler/
-│   ├── rapor.txt
-│   └── notlar.txt
-├── kodlar/
-│   ├── script.sh
-│   └── test.py
-└── README.md
-```
-
-2. Her dosyaya farklı izinler atayın ve bunları listeleyin
-3. Dizin yapısının bir şemasını çıkarın
-
-### Orta Seviye
-1. Bir disk kullanım raporu oluşturun
-2. En çok yer kaplayan 10 dizini bulun
-3. Sistem günlüklerini analiz edin
-
-### İleri Seviye
-1. Otomatik yedekleme scripti yazın
-2. Sistem izleme aracı geliştirin
-3. Disk kullanımı raporu oluşturan script yazın
-
-## Hızlı Başvuru Kılavuzu
-[... Önceki kılavuz devam edecek ...]
-
-### 📚 Önemli Dizinler ve İçerikleri
-```
-/bin   → Temel komutlar
-/sbin  → Sistem komutları
-/etc   → Yapılandırma
-/home  → Kullanıcı dizinleri
-/var   → Değişken veriler
-/usr   → Kullanıcı programları
-```
-
-### 🔍 Dosya Sistemi İşlemleri
-```
-df -h   → Disk kullanımı
-du -sh  → Dizin boyutu
-mount   → Disk bağlama
-umount  → Disk ayırma
-```
 
 Not: Bu belge sürekli güncellenecek ve genişletilecektir. Katkıda bulunmak için iletişime geçebilirsiniz.
