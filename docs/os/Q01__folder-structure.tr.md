@@ -96,8 +96,6 @@ Unix/Linux sistemlerinde tüm dosya sistemi "/" (kök) dizininden başlar. Bu, W
 
 [← Ana Sayfa](Q00_index.tr.md)
 
-[← Önceki](Q00_index.tr.md)
-[→ Sonraki](Q00_index.tr.md)
 
 
 Not: Bu belge sürekli güncellenecek ve genişletilecektir. Katkıda bulunmak için iletişime geçebilirsiniz.
