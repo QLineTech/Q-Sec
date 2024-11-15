@@ -239,13 +239,6 @@ Komutların kısa açıklamalarını gösterir.
 whatis ls            # ls komutunun açıklaması
 ```
 
-### apropos
-Komutları anahtar kelimeyle arar.
-
-```bash
-apropos copy         # Kopyalamayla ilgili komutlar
-```
-
 ## Ödevler
 
 ### Başlangıç Seviyesi
