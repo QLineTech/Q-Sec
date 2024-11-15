@@ -91,30 +91,6 @@ chmod 600 dosya        # rw-------
 chmod -R 755 dizin     # Tüm alt dizin ve dosyalara uygula
 ```
 
-## Özel İzinler
-
-### SUID (4000)
-- Dosyayı sahibinin yetkileriyle çalıştırır
-```bash
-chmod u+s dosya        # SUID ekle
-chmod 4755 dosya       # SUID ile birlikte
-```
-
-### SGID (2000)
-- Dizinde: Yeni oluşturulan dosyalar dizinin grubuyla oluşur
-- Dosyada: Dosyayı grubun yetkileriyle çalıştırır
-```bash
-chmod g+s dizin        # SGID ekle
-chmod 2755 dizin       # SGID ile birlikte
-```
-
-### Sticky Bit (1000)
-- Sadece sahibi silebilir/değiştirebilir
-```bash
-chmod +t dizin         # Sticky bit ekle
-chmod 1755 dizin       # Sticky bit ile birlikte
-```
-
 ## Örnekler ve Senaryolar
 
 ### Web Sunucu Senaryosu
