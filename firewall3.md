@@ -242,6 +242,71 @@ ufw enable
 
 
 
+# Ağ Güvenliği Final Ödevi - UFW Güvenlik Duvarı Yapılandırması
+
+## Senaryo
+TechnoMart adlı büyük bir teknoloji mağazalar zincirinin ağ güvenlik duvarı yapılandırmasını gerçekleştirmeniz isteniyor. Şirketin üç farklı ağ segmenti bulunmaktadır:
+
+1. TECHNO_CUSTOMER (10.10.0.0/16): Mağaza içi müşteri WiFi ağı
+2. TECHNO_STAFF (172.16.0.0/16): Çalışan ve yönetici ağı  
+3. TECHNO_POS (192.168.0.0/16): Kasa ve stok yönetim sistemleri ağı
+
+## Ek Sistemler
+- POS Sunucuları: 192.168.10.0/24 subnet'inde çalışmakta
+- ERP Sistemi: 172.16.20.0/24 subnet'inde hizmet vermekte
+- Mail Sunucuları
+- DNS Sunucuları
+
+## Gereksinimler
+
+### 1. Temel Güvenlik Politikaları (20 puan)  
+- Varsayılan gelen/giden trafik politikalarını belirleyin
+- Loglama ayarlarını yapılandırın
+- Ağ segmentlerini tanımlayın
+
+### 2. POS ve ERP Erişim Yönetimi (20 puan)
+- POS sistemi erişimini düzenleyin:
+  * Sadece TECHNO_POS ve TECHNO_STAFF ağlarına izin verin
+  * TECHNO_CUSTOMER ağından erişimi engelleyin
+- ERP sistemi erişimini yapılandırın:
+  * Sadece TECHNO_STAFF ağına izin verin
+  * Rate limiting uygulayın
+
+### 3. İnternet Erişim Kontrolü (20 puan)
+- Her ağ segmenti için HTTP/HTTPS erişimlerini düzenleyin
+- Rate limiting uygulayın:
+  * TECHNO_CUSTOMER: 30 istek/dakika
+  * TECHNO_POS: 50 istek/dakika  
+  * TECHNO_STAFF: Sınırsız
+
+### 4. Güvenlik Önlemleri (20 puan)
+- SSH brute force koruması yapılandırın
+- Her ağ segmenti için connection limiting uygulayın
+- DOS ve DDOS koruması ekleyin
+
+### 5. Servis Politikaları (20 puan)
+- DNS servislerini yapılandırın
+- Mail servislerini (SMTP, POP3, IMAP) sadece TECHNO_STAFF ağına açın
+- Her servise uygun rate limiting kuralları ekleyin
+
+## Teslim Gereksinimleri
+1. UFW kurallarını içeren bir bash script hazırlayın (technomart_ufw.sh)
+2. Her kuralı yorum satırları ile açıklayın
+3. README.md dosyası oluşturun:
+   - Kurulum adımları
+   - Test senaryoları
+   - Önemli notlar
+4. Test sonuçlarını belgeleyin
+
+## Değerlendirme Kriterleri
+- Kod düzeni ve okunabilirlik (%20)
+- Güvenlik politikalarının doğru uygulanması (%30)
+- Yorum ve açıklamaların yeterliliği (%20)
+- Rate limiting ve connection limiting ayarlarının uygunluğu (%15)
+- Test senaryolarının kapsamı (%15)
+
+
+
 
 
 
