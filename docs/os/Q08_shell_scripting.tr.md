@@ -358,6 +358,232 @@ man sed
 | -x | Çalıştırılabilir mi |
 | -s | Boyut sıfırdan büyük mü |
 
+
+
+-----------------------------------
+
+# Başlangıç Seviyesi Siber Güvenlik Bash Script Senaryoları
+
+## Temel Sistem Güvenliği
+
+### 1. Sistem Kullanıcı Kontrolü
+Sistemdeki tüm kullanıcıları listeleyen ve son giriş tarihlerini gösteren bir script yazın.
+#!/bin/bash
+cat /etc/passwd | cut -d: -f1
+last | head -n 10
+
+### 2. Disk Kullanım Monitörü
+Disk kullanımını kontrol eden ve belirli bir eşik değerini aştığında e-posta gönderen script yazın.
+#!/bin/bash
+THRESHOLD=90
+DISK_USAGE=$(df -h / | tail -n 1 | awk '{print $5}' | cut -d'%' -f1)
+
+if [ "$DISK_USAGE" -gt "$THRESHOLD" ]; then
+    echo "Disk usage alert: $DISK_USAGE%" 
+fi
+
+### 3. Açık Port Tarayıcı
+Localhost üzerinde açık portları tarayan basit bir script yazın.
+#!/bin/bash
+for port in {1..1000}
+do
+    (echo >/dev/tcp/localhost/$port) &>/dev/null && echo "Port $port is open"
+done
+
+### 4. Dosya İzinleri Kontrolü
+Belirtilen dizindeki tehlikeli dosya izinlerini (777) bulan script.
+#!/bin/bash
+find /home -type f -perm 777
+
+### 5. Failed Login Attempts
+/var/log/auth.log dosyasından başarısız giriş denemelerini listeleyen script.
+#!/bin/bash
+grep "Failed password" /var/log/auth.log | tail -n 10
+
+## Log Analizi
+
+### 6. Apache Log Analizi
+Apache access.log dosyasından en çok istek yapan IP'leri bulan script.
+#!/bin/bash
+cat access.log | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10
+
+### 7. Error Log Monitörü
+Sistem error loglarını izleyen ve belirli hataları raporlayan script.
+#!/bin/bash
+KEYWORDS="error|failed|warning"
+tail -f /var/log/syslog | grep -iE "$KEYWORDS"
+
+### 8. SSH Bağlantı Takibi
+SSH bağlantılarını izleyen ve raporlayan script.
+#!/bin/bash
+watch -n 1 'netstat -ant | grep ":22"'
+
+### 9. Servis Durumu Kontrolü
+Önemli servislerin çalışır durumda olup olmadığını kontrol eden script.
+#!/bin/bash
+SERVICES="ssh apache2 mysql"
+for service in $SERVICES
+do
+    systemctl status $service | grep "Active:"
+done
+
+### 10. Dosya Değişikliği Takibi
+Önemli sistem dosyalarındaki değişiklikleri izleyen script.
+#!/bin/bash
+FILES="/etc/passwd /etc/shadow /etc/sudoers"
+for file in $FILES
+do
+    md5sum $file
+done
+
+## Ağ Güvenliği
+
+### 11. IP Bloklama
+Belirli bir IP adresini iptables kullanarak bloklayan script.
+#!/bin/bash
+IP="192.168.1.100"
+iptables -A INPUT -s $IP -j DROP
+
+### 12. Bağlantı Sayısı Kontrolü
+Sistemdeki aktif bağlantıları sayan script.
+#!/bin/bash
+netstat -an | grep "ESTABLISHED" | wc -l
+
+### 13. DNS Sorgusu
+Verilen domain için DNS kayıtlarını kontrol eden script.
+#!/bin/bash
+DOMAIN="example.com"
+dig $DOMAIN +short
+
+### 14. Ağ Trafiği Monitörü
+Temel ağ trafiğini izleyen script.
+#!/bin/bash
+watch -n 1 'ifconfig eth0 | grep "RX packets"'
+
+### 15. Ping Kontrolü
+Belirli sunucuların erişilebilirliğini kontrol eden script.
+#!/bin/bash
+HOSTS="google.com facebook.com twitter.com"
+for host in $HOSTS
+do
+    ping -c 1 $host &>/dev/null && echo "$host UP" || echo "$host DOWN"
+done
+
+## Sistem Güvenliği
+
+### 16. Process Kontrolü
+Şüpheli processleri listeleyen script.
+#!/bin/bash
+ps aux | awk '{if($3 > 50.0) print $0}'
+
+### 17. Root Kit Kontrolü
+Basit rootkit belirtilerini arayan script.
+#!/bin/bash
+find / -name "..." -type f 2>/dev/null
+find / -perm -4000 2>/dev/null
+
+### 18. Backup Kontrolü
+Kritik dosyaların yedeklerini alan script.
+#!/bin/bash
+BACKUP_DIR="/backup"
+tar -czf $BACKUP_DIR/etc-backup-$(date +%F).tar.gz /etc
+
+### 19. Weak Password Checker
+/etc/shadow dosyasında zayıf şifreleri kontrol eden script.
+#!/bin/bash
+cat /etc/shadow | cut -d: -f2 | grep -v '*' | grep -v '!'
+
+### 20. USB Cihaz Kontrolü
+USB portlarına bağlanan cihazları izleyen script.
+#!/bin/bash
+watch -n 1 'lsusb'
+
+## Güvenlik Raporlama
+
+### 21. Günlük Güvenlik Raporu
+Temel sistem güvenlik durumunu raporlayan script.
+#!/bin/bash
+echo "System Update Status:"
+apt update -s
+echo "Open Ports:"
+netstat -tuln
+echo "Failed Logins:"
+grep "Failed password" /var/log/auth.log | tail -n 5
+
+### 22. Dosya Bütünlük Kontrolü
+Önemli dosyaların hash değerlerini kontrol eden script.
+#!/bin/bash
+for file in /bin/*
+do
+    md5sum "$file" >> hash_list.txt
+done
+
+### 23. Cron Job Monitörü
+Sistemdeki cron jobları listeleyen ve analiz eden script.
+
+```
+#!/bin/bash
+for user in $(cut -d: -f1 /etc/passwd)
+do
+    crontab -l -u $user 2>/dev/null
+done
+
+### 24. Firewall Kuralları Raporu
+Mevcut firewall kurallarını raporlayan script.
+#!/bin/bash
+iptables -L -n -v --line-numbers
+
+### 25. Sistem Kaynak Kullanımı
+Sistem kaynaklarının kullanımını izleyen script.
+#!/bin/bash
+while true
+do
+    top -bn1 | head -n 5
+    sleep 5
+done
+
+## Otomatik Güvenlik Önlemleri
+
+### 26. Otomatik Güncelleme
+Sistemi otomatik güncelleyen script.
+#!/bin/bash
+apt update && apt upgrade -y
+
+### 27. Temp Dosya Temizleyici
+Geçici dosyaları temizleyen script.
+#!/bin/bash
+find /tmp -type f -mtime +7 -delete
+
+### 28. SSH Brute Force Koruması
+SSH brute force saldırılarını tespit eden ve bloklayan script.
+#!/bin/bash
+grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr
+
+### 29. Log Rotasyonu
+Sistem loglarını yöneten script.
+#!/bin/bash
+LOGS="/var/log/*.log"
+for log in $LOGS
+do
+    if [ -f "$log" ]; then
+        gzip -9 "$log"
+    fi
+done
+
+### 30. Güvenlik Denetimi
+Temel güvenlik kontrollerini yapan script.
+#!/bin/bash
+echo "Checking root processes..."
+ps -ef | grep root
+echo "Checking open ports..."
+netstat -tuln
+echo "Checking system updates..."
+apt list --upgradable
+
+
+
+
 [← Önceki: Ağ Yönetimi](Q07_network_management.tr.md) | [Sonraki: Veri İşleme →](Q09_data_processing.tr.md)
 
 [← Ana Sayfaya Dön](Q00_index.tr.md)
+
