@@ -1,5 +1,3 @@
-Size her bir bileşeni detaylı olarak açıklayacağım.
-
 # Aliases (Takma Adlar)
 
 Aliases, pfSense'de sık kullanılan IP adresleri, portlar veya ağları gruplamak için kullanılan önemli bir özelliktir. Düşünün ki bir ofisteki tüm yazıcıların IP adreslerini tek bir isim altında toplamak istiyorsunuz. Aliases sayesinde "Yazicilar" adında bir grup oluşturup, firewall kurallarında tek tek IP adresleri yazmak yerine bu grubu kullanabilirsiniz.
