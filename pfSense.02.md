@@ -1,28 +1,72 @@
-# Kapsamlı Güvenlik Duvarı Yönetim Kılavuzu
+# pfSense Güvenlik Duvarı Kapsamlı Yönetim Kılavuzu
 
 ## Giriş
 
 pfSense güvenlik duvarı yönetim arayüzü, ağ güvenliğinizi yapılandırmanız ve yönetmeniz için güçlü araçlar sunar. Bu kapsamlı kılavuz, her bir özelliği derinlemesine inceleyecek ve günlük yönetim görevlerinizde size yardımcı olacaktır.
 
-## Arayüz Genel Bakış
+## Arayüzde Gezinme ve Temel Kavramlar
 
-### Varsayılan Kurallar ve Özellikleri
+pfSense güvenlik duvarı arayüzü, **Firewall > Rules** menüsünde mantıksal bir düzende organize edilmiştir. Bu menüye girdiğinizde, sisteminizdeki tüm ağ arayüzleri için sekmeleri göreceksiniz. Her arayüz için kurallar ayrı yönetilir ve kendi özelliklerine sahiptir.
 
-pfSense'in **Firewall > Rules** ekranında ilk olarak WAN kural seti görüntülenir. Bu ekranda varsayılan olarak:
+### WAN Arayüzü 
+
+WAN arayüzünde varsayılan olarak iki temel koruma bulunur:
 
 1. **Özel Ağları Engelleme Kuralı (Block private networks)**
    - Özel IP adresi aralıklarından gelen trafiği engeller
    - Dişli simgesine tıklayarak yapılandırılabilir
    - Ağ güvenliğinin temel taşlarından biridir
 
+**Örnek Senaryo: E-ticaret Şirketi Dış Bağlantı Güvenliği**
+```plaintext
+[Dış Erişim Kuralları]
+- HTTPS (443) trafiğine izin verme
+- SSH (22) erişimini sadece güvenli IP'lere açma
+- DNS (53) trafiğini yalnızca belirli sunuculara izin verme
+```
+
 2. **Bogon Ağları Engelleme Kuralı (Block bogon networks)**
    - Geçersiz veya ayrılmış IP adreslerinden gelen trafiği engeller
    - WAN arayüzü yapılandırmasından özelleştirilebilir
    - Ağınızı sahte trafikten korur
 
-### Kural Göstergeleri ve Anlamları
+**Örnek Senaryo: DDoS Koruma Yapılandırması**
+```plaintext
+[Gelişmiş Güvenlik]
+- Rate limiting kuralları
+- Hatalı paket filtreleme
+- Durum tablosu optimizasyonu
+```
 
-Her kuralın yanında bulunan görsel göstergeler şunları ifade eder:
+### LAN Arayüzü
+
+LAN arayüzünde varsayılan olarak üç temel kural bulunur:
+
+1. IPv4 için "Default allow LAN to any" kuralı
+2. IPv6 için "Default allow LAN to any" kuralı
+3. Anti-Lockout koruma kuralı
+
+**Örnek Senaryo: Kurumsal Ofis İç Ağ Yapılandırması**
+```plaintext
+[Departman Erişimi]
+- Departmanlar arası erişim kontrolü
+- İnternet erişim politikaları
+- Yerel sunucu erişim kuralları
+```
+
+**Örnek Senaryo: Güvenli Yönetim Erişimi**
+```plaintext
+[Yönetici Politikaları]
+- WebGUI erişim kısıtlamaları
+- SSH yönetim kuralları
+- SNMP izleme yapılandırması
+```
+
+## Kural Göstergeleri ve Anlamları
+
+Her kuralın yanında bulunan görsel işaretler, o kuralın durumu ve yapılandırması hakkında hızlı bilgi verir:
+
+### Temel Göstergeler
 
 1. **Eylem Göstergeleri:**
    - ✓ (Yeşil onay): Trafiğe izin verilir
@@ -34,158 +78,141 @@ Her kuralın yanında bulunan görsel göstergeler şunları ifade eder:
    - ⚙️ (Dişli): Gelişmiş seçenekler kullanımda
    - 🔅 (Soluk görünüm): Kural devre dışı
 
-## Detaylı Kural Yönetimi
+**Örnek Senaryo: Trafik İzleme Yapılandırması**
+```plaintext
+[Trafik Analizi]
+- Aktif bağlantı sayısı izleme
+- Trafik günlükleme
+- Performans metrikleri takibi
+```
 
-### Kural İzleme ve Analiz
+## Kural Yönetimi
 
-Kuralların etkinliğini ve kullanımını izlemek için "States" (Durumlar) sütunu önemli bilgiler sunar:
+### Kural Ekleme ve Düzenleme
 
-1. **Durum Sayacı:**
-   - Aktif bağlantı sayısını gösterir
-   - Trafik miktarını takip eder
-   - Fare üzerine getirildiğinde detaylı istatistikler sunar
+Kuralları iki şekilde ekleyebilirsiniz:
+1. Listenin başına eklemek için üst "Ekle" düğmesi
+2. Listenin sonuna eklemek için alt "Ekle" düğmesi
 
-2. **İstatistik Detayları:**
-   ```plaintext
-   Aktif Bağlantılar: 125
-   Toplam Trafik: 1.2 GB
-   Son Aktivite: 2 dakika önce
-   ```
+**Örnek Senaryo: Web Sunucu Güvenlik Kuralları**
+```plaintext
+[Web Güvenliği]
+1. HTTPS trafiğine izin ver
+2. HTTP'yi HTTPS'e yönlendir
+3. WebSocket bağlantılarını yapılandır
+```
 
-### Durum Yönetimi
+### Kural Kopyalama ve Taşıma
 
-Kural durumlarını yönetmek için çeşitli seçenekler bulunur:
+Kuralları farklı arayüzler arasında veya aynı arayüz içinde kopyalayabilir ve taşıyabilirsiniz:
 
-1. **Durum Temizleme:**
-   ```plaintext
-   1. Kuralın yanındaki çarpı simgesine tıklayın
-   2. Onay isteğini kabul edin
-   3. İlgili arayüzdeki durumlar temizlenir
-   ```
+1. **Tekli Kopyalama:**
+   - Kural yanındaki kopyala simgesine tıklayın
+   - Yeni konumu seçin
+   - Gerekli düzenlemeleri yapın
 
-2. **Önemli Not:** Durum temizleme işlemi sadece seçili arayüzdeki durumları etkiler. Diğer arayüzlerdeki ilişkili durumlar etkilenmez.
+2. **Toplu Kopyalama:**
+   - Kuralları seçin
+   - "Kopyala" düğmesini kullanın
+   - Hedef arayüzü belirleyin
+   - Arayüz tanımlarını dönüştürme seçeneğini değerlendirin
 
-### Kuralları Devre Dışı Bırakma ve Etkinleştirme
+**Örnek Senaryo: Şube Ofisi Yapılandırması**
+```plaintext
+[Şube Politikaları]
+1. Ana ofis kurallarını kopyala
+2. Yerel gereksinimlere göre düzenle
+3. Bağlantı kurallarını test et
+```
 
-Kuralları geçici olarak devre dışı bırakmak veya yeniden etkinleştirmek için:
+### Durum Tablosu Yönetimi
 
-1. **Tekli İşlem:**
-   ```plaintext
-   Devre Dışı Bırakma:
-   1. Yasak simgesine tıklayın
-   2. Kural soluk renkle gösterilir
-   3. Simge onay işaretine dönüşür
+Durum tablosu, aktif bağlantıları ve trafik akışını izler:
 
-   Etkinleştirme:
-   1. Onay işaretine tıklayın
-   2. Kural normal rengine döner
-   3. Simge yasak işaretine dönüşür
-   ```
+1. **States Sütunu Bilgileri:**
+   - Aktif bağlantı sayısı
+   - Trafik miktarı
+   - Son aktivite zamanı
 
-2. **Çoklu İşlem:**
-   ```plaintext
-   1. İşlem yapılacak kuralları seçin
-   2. "Aç/Kapat" düğmesini kullanın
-   3. Tüm seçili kuralların durumu değişir
-   ```
+2. **Durum Temizleme:**
+   - Belirli bir kural için durumları temizleme
+   - Arayüze özel durum yönetimi
+   - Performans optimizasyonu
 
-3. **Düzenleme ile Devre Dışı Bırakma:**
-   - Kuralı düzenleyin
-   - "Devre Dışı" onay kutusunu işaretleyin
-   - Değişiklikleri kaydedin
+**Örnek Senaryo: Yüksek Yük Optimizasyonu**
+```plaintext
+[Performans Yönetimi]
+- Durum tablosu boyutunu izle
+- Gereksiz durumları temizle
+- Kaynak kullanımını optimize et
+```
 
-### Kural Ayırıcıları ile Organizasyon
+### Kural Ayırıcıları ve Organizasyon
 
-Kural setinizi daha iyi organize etmek için ayırıcıları kullanabilirsiniz:
+Kuralları mantıksal gruplara ayırmak için ayırıcılar kullanabilirsiniz:
 
-1. **Yeni Ayırıcı Oluşturma:**
-   ```plaintext
-   1. "Ayırıcı" düğmesine tıklayın
-   2. Açıklayıcı bir metin girin
-   3. Renk seçin (görsel organizasyon için)
-   4. İstenen konuma sürükleyin
-   5. İçeriği kaydedin
-   6. Kural listesini kaydedin
-   ```
+1. **Ayırıcı Oluşturma:**
+   - "Ayırıcı" düğmesine tıklayın
+   - Açıklayıcı metin girin
+   - Renk seçin
+   - Konumlandırın
 
 2. **Ayırıcı Yönetimi:**
-   ```plaintext
-   Taşıma:
-   1. Ayırıcıyı tutun
-   2. Yeni konuma sürükleyin
-   3. Listeyi kaydedin
+   - Sürükle-bırak ile taşıma
+   - Renk ve metin düzenleme
+   - Gruplama mantığını koruma
 
-   Silme:
-   1. Çöp kutusu simgesine tıklayın
-   2. Listeyi kaydedin
-   ```
+**Örnek Senaryo: Güvenlik Politikası Organizasyonu**
+```plaintext
+[Politika Grupları]
+- Güvenlik seviyelerine göre gruplama
+- Departman bazlı ayrım
+- Özel erişim kuralları
+```
 
-### Değişiklik Takibi ve Güvenlik
+## Değişiklik Takibi ve Güvenlik
 
-pfSense, kural değişikliklerini detaylı şekilde takip eder:
+pfSense, tüm kural değişikliklerini detaylı şekilde kaydeder:
 
 1. **Kayıt Edilen Bilgiler:**
-   - Değişikliği yapan kullanıcının adı
+   - Kullanıcı adı
    - IP adresi
    - Zaman damgası
-   - Otomatik oluşturma bilgisi
+   - Değişiklik detayları
 
-2. **Değişiklik Görüntüleme:**
-   ```plaintext
-   Son Güncelleme:
-   Kullanıcı: admin
-   IP: 192.168.1.100
-   Tarih: 14/01/2025 15:30
-   ```
+2. **Güvenlik İzleme:**
+   - Değişiklik geçmişi
+   - Kullanıcı aktivitesi
+   - Sistem durumu
 
-## Pratik Uygulama Örnekleri
-
-### Örnek 1: Güvenli Web Sunucu Yapılandırması
+**Örnek Senaryo: Denetim ve Uyumluluk**
 ```plaintext
-[Web Sunucusu Güvenliği] - Mavi
-- HTTPS trafiğine izin ver (443)
-- HTTP trafiğini reddet (80)
-- Yönetim erişimini kısıtla
-
-[Güvenlik Önlemleri] - Kırmızı
-- Rate limiting kuralları
-- Brute force koruması
-- DDoS önleme
+[Güvenlik Denetimi]
+- Düzenli kural gözden geçirme
+- Değişiklik dokümantasyonu
+- Uyumluluk raporlaması
 ```
 
-### Örnek 2: VPN ve Uzak Erişim
-```plaintext
-[VPN Erişimi] - Yeşil
-- OpenVPN portu (1194/UDP)
-- İç ağ erişim kuralları
-- İnternet erişim politikası
-
-[Yönetim Erişimi] - Turuncu
-- SSH erişimi (özel IP'ler)
-- HTTPS yönetim arayüzü
-- SNMP izleme
-```
-
-## En İyi Uygulamalar ve Öneriler
+## En İyi Uygulamalar
 
 1. **Kural Organizasyonu:**
-   - Kuralları mantıksal gruplara ayırın
-   - Her grup için açıklayıcı ayırıcılar kullanın
-   - En önemli kuralları üste yerleştirin
+   - Mantıksal gruplama kullanın
+   - Açıklayıcı isimler verin
+   - Düzenli gözden geçirin
 
 2. **Güvenlik Önlemleri:**
-   - Anti-lockout kuralını asla devre dışı bırakmayın
-   - Kural değişikliklerini test edin
-   - Düzenli yedekleme alın
+   - Anti-lockout kuralını koruyun
+   - Değişiklikleri test edin
+   - Yedekleme yapın
 
 3. **Performans İyileştirmeleri:**
-   - Durum tablosunu düzenli kontrol edin
-   - Kullanılmayan kuralları temizleyin
-   - Kural sıralamasını optimize edin
+   - Durum tablosunu optimize edin
+   - Gereksiz kuralları temizleyin
+   - Kaynak kullanımını izleyin
 
 4. **Dokümantasyon:**
-   - Önemli kuralları belgeleyin
-   - Değişiklikleri kayıt altına alın
+   - Değişiklikleri kaydedin
+   - Kural açıklamaları ekleyin
    - Düzenli denetim yapın
 
-Bu kılavuz, pfSense güvenlik duvarı yönetiminin tüm yönlerini kapsar.
+Bu kılavuz, pfSense güvenlik duvarı yönetiminin tüm yönlerini kapsar. Sisteminizin ihtiyaçlarına göre bu bilgileri uyarlayabilir ve güvenli bir ağ altyapısı oluşturabilirsiniz.
