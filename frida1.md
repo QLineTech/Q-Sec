@@ -57,6 +57,13 @@
 | **Proxy Ayarla**    | Port `8080`, “All interfaces” seç.   | Port `8080`, “All interfaces”. | Port `8080`, “All interfaces”. |
 | **Sertifika Al**    | DER formatında kaydet (burp-cert.der). | DER formatında kaydet.       | DER formatında kaydet.         |
 
+
+---
+Der dosyasi android'da kullanilamaz onun icin openssl kullanarak onu PEM formatina cevirmemiz gerekiyor
+
+```bash
+openssl x509 -inform der -in certificate.der -out certificate.pem
+```
 ---
 
 #### 5. Genymotion’a Burp Sertifikası Kurma
